@@ -1,0 +1,22 @@
+{
+  "name": "demo-wallet-interaction",
+  "version": "1.0.0",
+  "description": "A PoC for website-based wallet",
+  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "dapp",
+    "wallet"
+  ],
+  "scripts": {
+    "dapp": "yarn workspace dapp dev",
+    "wallet": "yarn workspace wallet dev",
+    "dev": "concurrently --kill-others-on-fail \"yarn wallet\"  \"yarn dapp\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "@sinzii",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
