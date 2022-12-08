@@ -2,15 +2,13 @@ import {useEffect, useRef, useState} from "react";
 import "./App.css";
 import {Keyring} from "@polkadot/keyring";
 
-const DEFAULT_MASTER_PASSWORD = 'super_secret'
-
 const MNEMONICS = [
   'forget inside crane social confirm winter evidence ancient flash pretty orange history',
   'radar worth gown mobile federal face cushion someone cake rural lawsuit census'
 ];
 
 const keyring = new Keyring();
-const defaultPairs = MNEMONICS.map((one, index) => keyring.addFromUri(`${one}///${DEFAULT_MASTER_PASSWORD}`,{ name: `Account ${index + 1}` }, 'ed25519'));
+const defaultPairs = MNEMONICS.map((one, index) => keyring.addFromUri(one,{ name: `Account ${index + 1}` }, 'ed25519'));
 
 function App() {
   const [data, setData] = useState<any>();
