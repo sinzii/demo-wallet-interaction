@@ -37,7 +37,8 @@ function App() {
 
   useEffect(() => {
     const onNewMessage = (event: MessageEvent<any>) => {
-      console.log(event.origin, event);
+      console.log(event);
+      console.log(event.origin, dappUrl, event.origin !== dappUrl);
 
       if (event.origin !== dappUrl) {
         return;
