@@ -46,7 +46,7 @@ function App() {
     await openWallet();
 
     walletWindowRef.current?.postMessage(
-      {dappName: "SubProfileDapp", type: "request_accounts"},
+      {dappName: "CoongDapp", type: "request_accounts"},
       walletUrl
     );
   };
@@ -97,7 +97,7 @@ function App() {
     await openWallet();
 
     walletWindowRef.current?.postMessage(
-      {dappName: "SubProfileDapp", type: "sign_dummy", account: address, message: "This is a dummy message"},
+      {dappName: "CoongDapp", type: "sign_dummy", account: address, message: "This is a dummy message"},
       walletUrl
     );
   }
@@ -108,7 +108,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>SubProfile Dapp</h1>
+      <h1>Coong Dapp</h1>
       {connectedAccounts.length > 0 ? (
         <div>
           <h3>Connected Accounts</h3>
