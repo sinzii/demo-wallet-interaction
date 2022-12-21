@@ -8,7 +8,6 @@ import {toast, ToastContainer} from 'react-toastify';
 function App() {
   const walletUrl = import.meta.env.VITE_WALLET_URL;
   const walletWindowRef = useRef<Window | null>(null);
-  const walletIframeRef = useRef<HTMLIFrameElement>(null);
   const walletConnectedRef = useRef<boolean>(false);
   const [connectedAccounts, setConnectedAccounts] = useState<string[]>([])
 
@@ -21,7 +20,6 @@ function App() {
       }
 
       const intervalNumber = setInterval(() => {
-        console.log('walletConnected', walletConnectedRef.current);
         if (walletConnectedRef.current) {
           clearInterval(intervalNumber);
           resolve();
@@ -57,7 +55,6 @@ function App() {
         return;
       }
 
-      console.log(event);
       const {type, accounts, status} = event.data || {};
       if (status === 'rejected') {
         toast.error(`Action ${type} rejected`);
@@ -80,18 +77,6 @@ function App() {
       window.removeEventListener("message", onReceviedWalletMessage, false);
     };
   }, []);
-
-  useEffect(() => {
-    const walletIframeWindow = walletIframeRef.current?.contentWindow;
-    if (!walletIframeWindow) {
-      return;
-    }
-
-    setTimeout(() => {
-      walletIframeWindow.postMessage({type: 'get_accounts'}, '*')
-      console.log('posted message get_accounts');
-    }, 100);
-  })
 
   const doSignDummy = async (address: string) => {
     await openWallet();
@@ -129,8 +114,6 @@ function App() {
       )}
 
       <ToastContainer/>
-
-      {/*<iframe ref={walletIframeRef} src={walletUrl} width={0} height={0} />*/}
     </div>
   );
 }

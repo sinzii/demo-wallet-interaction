@@ -15,7 +15,6 @@ function App() {
   const dappWindowRef = useRef<Window | null>(null);
   const dappUrl = import.meta.env.VITE_DAPP_URL;
   const ready = useRef<boolean>(false)
-  console.log('render wallet');
 
   useEffect(() => {
     if (!(window.opener || window.top) || ready.current) {
@@ -30,14 +29,7 @@ function App() {
   }, [ready]);
 
   useEffect(() => {
-    // set up the accounts
-  })
-
-  useEffect(() => {
     const onNewMessage = (event: MessageEvent<any>) => {
-      console.log(event);
-      console.log(event.origin, dappUrl, event.origin !== dappUrl);
-
       if (event.origin !== dappUrl) {
         return;
       }
@@ -105,7 +97,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>SubProfile Wallet</h1>
+      <h1>Coong Wallet</h1>
       {data && (
         <div>
           <p>DappName: {data.dappName}</p>
